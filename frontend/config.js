@@ -1,0 +1,17 @@
+window.PRM_CONFIG={
+  version:'2.0.0',
+  refreshMs:60000,
+  cash:3597279,
+  baseline:{portfolioValue:294622000,collateralRatio:162,maxLoss:100000000,monthlyLossLimit:20000000},
+  tickers:{'SK하이닉스':'000660.KS','삼성전자':'005930.KS','SK스퀘어':'402340.KS','삼성전기':'009150.KS'},
+  fallbackPrices:{'SK하이닉스':1436000,'삼성전자':232750,'SK스퀘어':949000,'삼성전기':1277000},
+  positions:[
+    {name:'삼성전기',type:'신용',qty:5,avg:1265818,loan:3480955},
+    {name:'SK하이닉스',type:'유통융자',qty:120,avg:1445096,loan:95376100},
+    {name:'SK하이닉스',type:'자기융자',qty:47,avg:2043277,loan:52818400},
+    {name:'삼성전자',type:'신용',qty:74,avg:263142,loan:10709700},
+    {name:'SK스퀘어',type:'현금',qty:6,avg:1040500,loan:0},
+    {name:'SK스퀘어',type:'자기융자',qty:3,avg:1266000,loan:2088900},
+    {name:'SK스퀘어',type:'유통융자',qty:16,avg:1565563,loan:13713700}
+  ]
+};
