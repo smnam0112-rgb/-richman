@@ -1,10 +1,17 @@
 {
-  "updated_at": "2026-08-07",
+  "updated_at": "2026-08-10",
   "series": [
     {
       "date": "2026-08-07",
       "net_asset": 109842524,
       "portfolio_value": 284433000,
+      "loan": 178187755,
+      "cash": 3597279
+    },
+    {
+      "date": "2026-08-10",
+      "net_asset": 109664524,
+      "portfolio_value": 284255000,
       "loan": 178187755,
       "cash": 3597279
     }
