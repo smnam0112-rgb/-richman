@@ -1,0 +1,42 @@
+name: Update stress regression
+
+on:
+  schedule:
+    # KST weekdays 20:15, after KRX/NXT sessions are finished.
+    - cron: "15 11 * * 1-5"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/update_stress_regression.py"
+      - ".github/workflows/update-stress-regression.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-stress-regression
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Calculate 3m and 6m linked-stock betas
+        run: python scripts/update_stress_regression.py
+      - name: Save regression data
+        run: |
+          if git diff --quiet -- data/stress_regression.json; then
+            echo "No regression changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/stress_regression.json
+          git commit -m "Update historical stress regression"
+          git push
