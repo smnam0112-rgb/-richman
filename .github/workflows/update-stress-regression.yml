@@ -31,7 +31,7 @@ jobs:
         run: python scripts/update_stress_regression.py
       - name: Save regression data
         run: |
-          if git diff --quiet -- data/stress_regression.json; then
+          if [ -z "$(git status --porcelain -- data/stress_regression.json)" ]; then
             echo "No regression changes"
             exit 0
           fi
