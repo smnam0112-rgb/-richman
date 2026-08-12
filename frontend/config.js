@@ -1,9 +1,10 @@
 window.PRM_CONFIG={
-  version:'8.3.1',
+  version:'8.4.0',
   cash:5209057,
   baseline:{portfolioValue:294622000,collateralRatio:162,maxLoss:100000000,monthlyLossLimit:20000000},
   riskZones:{safe:180,caution:170,defense:160,danger:150,critical:140},
   stress:{min:900000,max:2300000,step:10000,tableStep:100000},
+  stressSensitivity:{'삼성전자':0.45,'SK스퀘어':0.75,'삼성전기':0.30},
   tickers:{'SK하이닉스':'000660.KS','삼성전자':'005930.KS','SK스퀘어':'402340.KS','삼성전기':'009150.KS'},
   fallbackPrices:{'SK하이닉스':1436000,'삼성전자':232750,'SK스퀘어':949000,'삼성전기':1277000},
   positions:[
