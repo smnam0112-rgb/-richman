@@ -322,19 +322,21 @@ def main():
     nxt_status = "OPEN" if "OPEN" in nxt_statuses else "CLOSE" if nxt_statuses and all(x == "CLOSE" for x in nxt_statuses) else "UNKNOWN"
     overall_status = "OPEN" if session in {"NXT_PRE", "KRX_MAIN", "NXT_AFTER"} else "CLOSE"
 
-    krx_updated = max(krx_times).astimezone(SEOUL).replace(microsecond=0) if krx_times else now
-    nxt_updated = max(nxt_times).astimezone(SEOUL).replace(microsecond=0) if nxt_times else (now if nxt_successes else None)
+    krx_traded_at = max(krx_times).astimezone(SEOUL).replace(microsecond=0) if krx_times else None
+    nxt_traded_at = max(nxt_times).astimezone(SEOUL).replace(microsecond=0) if nxt_times else None
 
     payload = {
-        "updated_at": (nxt_updated if use_nxt and nxt_updated else krx_updated).isoformat(),
+        "updated_at": now.isoformat(),
         "market_status": overall_status,
         "active_venue": active_venue,
         "active_session": session,
         "source": " + ".join(dict.fromkeys(providers)),
         "krx_status": krx_status,
         "nxt_status": nxt_status,
-        "krx_updated_at": krx_updated.isoformat(),
-        "nxt_updated_at": nxt_updated.isoformat() if nxt_updated else None,
+        "krx_updated_at": now.isoformat() if krx_successes else previous.get("krx_updated_at"),
+        "nxt_updated_at": now.isoformat() if nxt_successes else previous.get("nxt_updated_at"),
+        "krx_traded_at": krx_traded_at.isoformat() if krx_traded_at else None,
+        "nxt_traded_at": nxt_traded_at.isoformat() if nxt_traded_at else None,
         "prices": prices,
         "krx_prices": krx_prices,
         "nxt_prices": nxt_prices,
