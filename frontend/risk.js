@@ -3,13 +3,17 @@ window.PRMRisk={
   baseLoan(){return PRM_CONFIG.positions.reduce((a,p)=>a+(p.loan||0),0)},
   debtAdjustment(){return this.baseEffectiveDebt()-this.baseLoan()},
   debt(s,extraRepay=0){const loan=s.positions.reduce((a,p)=>a+(p.loan||0),0);return Math.max(1,loan+this.debtAdjustment()-Math.max(0,extraRepay))},
+  manualSensitivities(){try{return JSON.parse(localStorage.getItem('prm:stressSensitivity')||'{}')}catch(e){return{}}},
   sensitivities(){
     const base={...(PRM_CONFIG.stressSensitivity||{})};
-    try{return{...base,...JSON.parse(localStorage.getItem('prm:stressSensitivity')||'{}')}}catch(e){return base}
+    const auto=(typeof PRMStressRegression!=='undefined'&&PRMStressRegression.sensitivityMap)?PRMStressRegression.sensitivityMap():{};
+    return{...base,...auto,...this.manualSensitivities()};
   },
   setSensitivity(name,value){
-    const all=this.sensitivities();all[name]=Math.max(0,Math.min(2,Number(value||0)));localStorage.setItem('prm:stressSensitivity',JSON.stringify(all));return all[name];
+    const all=this.manualSensitivities();all[name]=Math.max(-2,Math.min(2,Number(value||0)));localStorage.setItem('prm:stressSensitivity',JSON.stringify(all));return all[name];
   },
+  clearSensitivity(name){const all=this.manualSensitivities();delete all[name];localStorage.setItem('prm:stressSensitivity',JSON.stringify(all));return this.sensitivities()[name]},
+  isManualSensitivity(name){return Object.prototype.hasOwnProperty.call(this.manualSensitivities(),name)},
   scenarioMove(s,hynixPrice){const cur=this.hynixCurrent(s);return cur>0&&hynixPrice>0?hynixPrice/cur-1:0},
   scenarioPriceFor(s,p,hynixPrice){
     if(!hynixPrice)return p.price;
