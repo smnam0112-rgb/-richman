@@ -1,5 +1,5 @@
 window.PRM_CONFIG={
-  version:'8.5.0',
+  version:'8.5.1',
   cash:5209057,
   baseline:{portfolioValue:294622000,collateralRatio:162,maxLoss:100000000,monthlyLossLimit:20000000},
   riskZones:{safe:180,caution:170,defense:160,danger:150,critical:140},
