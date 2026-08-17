@@ -1,5 +1,5 @@
 window.PRMPortfolio={
-  fresh(){return{schema:9,cash:PRM_CONFIG.cash,monthlyLoss:0,positions:PRM_CONFIG.positions.map(p=>({...p,price:PRM_CONFIG.fallbackPrices[p.name]||0}))}},
+  fresh(){return{schema:10,cash:PRM_CONFIG.cash,monthlyLoss:0,positions:PRM_CONFIG.positions.map(p=>({...p,price:PRM_CONFIG.fallbackPrices[p.name]||0}))}},
   initial(){
     const saved=PRMStorage.get('state',null);
     if(!saved)return this.fresh();
@@ -7,16 +7,16 @@ window.PRMPortfolio={
     saved.cash=Number(saved.cash||0);
     saved.monthlyLoss=Number(saved.monthlyLoss||0);
     saved.positions=saved.positions||[];
-    if(oldSchema<9){
-      const oldSamsung=saved.positions.find(p=>p.name==='삼성전기');
-      const samsungPrice=Number(oldSamsung&&oldSamsung.price||PRM_CONFIG.fallbackPrices['삼성전기']||0);
-      saved.positions=saved.positions.filter(p=>p.name!=='삼성전기');
-      const corrected=PRM_CONFIG.positions.find(p=>p.name==='삼성전기');
-      if(corrected)saved.positions.unshift({...corrected,price:samsungPrice});
+    if(oldSchema<10){
+      const oldPrices={};
+      for(const p of saved.positions){
+        if(p&&p.name&&Number(p.price||0)>0&&!oldPrices[p.name])oldPrices[p.name]=Number(p.price);
+      }
+      saved.positions=PRM_CONFIG.positions.map(p=>({...p,price:oldPrices[p.name]||PRM_CONFIG.fallbackPrices[p.name]||0}));
       saved.cash=PRM_CONFIG.cash;
-      saved.schema=9;
+      saved.schema=10;
       this.save(saved);
-    }else saved.schema=9;
+    }else saved.schema=10;
     for(const p of saved.positions){p.qty=Number(p.qty||0);p.avg=Number(p.avg||0);p.loan=Number(p.loan||0);if(!p.price||p.price<=0)p.price=PRM_CONFIG.fallbackPrices[p.name]||0}
     return saved;
   },
