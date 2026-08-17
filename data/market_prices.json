@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-08-17T08:56:54+09:00",
-  "market_status": "CLOSE",
+  "updated_at": "2026-08-17T10:14:44+09:00",
+  "market_status": "OPEN",
   "active_venue": "KRX",
-  "active_session": "KRX_CLOSE",
+  "active_session": "KRX_MAIN",
   "source": "Naver Finance KRX + Naver Finance NXT",
   "krx_status": "CLOSE",
   "nxt_status": "CLOSE",
-  "krx_updated_at": "2026-08-17T08:56:54+09:00",
-  "nxt_updated_at": "2026-08-17T08:56:54+09:00",
+  "krx_updated_at": "2026-08-17T10:14:44+09:00",
+  "nxt_updated_at": "2026-08-17T10:14:44+09:00",
   "krx_traded_at": "2026-08-14T16:10:21+09:00",
   "nxt_traded_at": "2026-08-14T15:30:00+09:00",
   "prices": {
