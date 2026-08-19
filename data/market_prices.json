@@ -1,20 +1,20 @@
 {
-  "updated_at": "2026-08-19T19:55:29+09:00",
-  "market_status": "OPEN",
+  "updated_at": "2026-08-19T20:25:15+09:00",
+  "market_status": "CLOSE",
   "active_venue": "NXT",
-  "active_session": "NXT_AFTER",
+  "active_session": "NXT_FINAL",
   "source": "Naver Finance KRX + Naver Finance NXT",
   "krx_status": "CLOSE",
-  "nxt_status": "OPEN",
-  "krx_updated_at": "2026-08-19T19:55:29+09:00",
-  "nxt_updated_at": "2026-08-19T19:55:29+09:00",
+  "nxt_status": "CLOSE",
+  "krx_updated_at": "2026-08-19T20:25:15+09:00",
+  "nxt_updated_at": "2026-08-19T20:25:15+09:00",
   "krx_traded_at": "2026-08-19T16:10:22+09:00",
   "nxt_traded_at": "2026-08-19T15:30:00+09:00",
   "prices": {
-    "000660.KS": 1626000,
+    "000660.KS": 1624000,
     "005930.KS": 257500,
     "402340.KS": 1101000,
-    "009150.KS": 1423000
+    "009150.KS": 1428000
   },
   "krx_prices": {
     "000660.KS": 1500000,
@@ -23,10 +23,10 @@
     "009150.KS": 1387000
   },
   "nxt_prices": {
-    "000660.KS": 1626000,
+    "000660.KS": 1624000,
     "005930.KS": 257500,
     "402340.KS": 1101000,
-    "009150.KS": 1423000
+    "009150.KS": 1428000
   },
   "opens": {
     "000660.KS": 1552000,
