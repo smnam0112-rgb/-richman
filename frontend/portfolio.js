@@ -1,5 +1,5 @@
 window.PRMPortfolio={
-  fresh(){return{schema:10,cash:PRM_CONFIG.cash,monthlyLoss:0,positions:PRM_CONFIG.positions.map(p=>({...p,price:PRM_CONFIG.fallbackPrices[p.name]||0}))}},
+  fresh(){return{schema:11,cash:PRM_CONFIG.cash,cashD1:PRM_CONFIG.cashD1||PRM_CONFIG.cash,cashD2:PRM_CONFIG.cashD2||PRM_CONFIG.cash,monthlyLoss:0,positions:PRM_CONFIG.positions.map(p=>({...p,price:PRM_CONFIG.fallbackPrices[p.name]||0}))}},
   initial(){
     const saved=PRMStorage.get('state',null);
     if(!saved)return this.fresh();
@@ -7,16 +7,22 @@ window.PRMPortfolio={
     saved.cash=Number(saved.cash||0);
     saved.monthlyLoss=Number(saved.monthlyLoss||0);
     saved.positions=saved.positions||[];
-    if(oldSchema<10){
+    if(oldSchema<11){
       const oldPrices={};
       for(const p of saved.positions){
         if(p&&p.name&&Number(p.price||0)>0&&!oldPrices[p.name])oldPrices[p.name]=Number(p.price);
       }
       saved.positions=PRM_CONFIG.positions.map(p=>({...p,price:oldPrices[p.name]||PRM_CONFIG.fallbackPrices[p.name]||0}));
       saved.cash=PRM_CONFIG.cash;
-      saved.schema=10;
+      saved.cashD1=PRM_CONFIG.cashD1||PRM_CONFIG.cash;
+      saved.cashD2=PRM_CONFIG.cashD2||PRM_CONFIG.cash;
+      saved.schema=11;
       this.save(saved);
-    }else saved.schema=10;
+    }else{
+      saved.schema=11;
+      saved.cashD1=Number(saved.cashD1??PRM_CONFIG.cashD1??saved.cash);
+      saved.cashD2=Number(saved.cashD2??PRM_CONFIG.cashD2??saved.cash);
+    }
     for(const p of saved.positions){p.qty=Number(p.qty||0);p.avg=Number(p.avg||0);p.loan=Number(p.loan||0);if(!p.price||p.price<=0)p.price=PRM_CONFIG.fallbackPrices[p.name]||0}
     return saved;
   },
@@ -46,6 +52,7 @@ window.PRMPortfolio={
       p.price=tx.price;
       if(financed)p.loan=Number(p.loan||0)+tx.amount;
       s.cash=Number(s.cash||0)-cashNeed;
+      s.cashD2=s.cash;
       message=financed
         ?`${tx.name} ${tx.type} ${tx.qty.toLocaleString()}주 매수 · 융자 ${Math.round(tx.amount).toLocaleString()}원 / 자기자금 ${Math.round(cashNeed).toLocaleString()}원`
         :`${tx.name} 현금 ${tx.qty.toLocaleString()}주 매수 · 예수금 ${Math.round(gross).toLocaleString()}원 사용`;
@@ -65,6 +72,7 @@ window.PRMPortfolio={
       p.qty=oldQty-tx.qty;
       p.loan=Math.max(0,Number(p.loan||0)-loanRepay);
       s.cash=Number(s.cash||0)+cashIn;
+      s.cashD2=s.cash;
       if(p.qty<=0)s.positions=s.positions.filter(x=>x!==p);
       message=`${tx.name} ${tx.type} ${tx.qty.toLocaleString()}주 매도 · 매도대금 ${Math.round(gross).toLocaleString()}원 / 융자상환 ${Math.round(loanRepay).toLocaleString()}원 / 예수금 +${Math.round(cashIn).toLocaleString()}원`;
     }else if(tx.kind==='repay'){
@@ -79,15 +87,18 @@ window.PRMPortfolio={
         p.loan-=used;rem-=used;
       }
       s.cash=Number(s.cash||0)-tx.amount;
+      s.cashD2=s.cash;
       message=`신용 ${Math.round(tx.amount).toLocaleString()}원 상환 · 예수금 동일 금액 감소`;
     }else if(tx.kind==='deposit'){
       if(tx.amount<=0)throw new Error('입금 금액을 입력해 주세요.');
       s.cash=Number(s.cash||0)+tx.amount;
+      s.cashD2=s.cash;
       message=`예수금 +${Math.round(tx.amount).toLocaleString()}원`;
     }else if(tx.kind==='withdraw'){
       if(tx.amount<=0)throw new Error('출금 금액을 입력해 주세요.');
       if(tx.amount>Number(s.cash||0))throw new Error('예수금보다 많이 출금할 수 없습니다.');
       s.cash=Number(s.cash||0)-tx.amount;
+      s.cashD2=s.cash;
       message=`예수금 -${Math.round(tx.amount).toLocaleString()}원`;
     }else throw new Error('거래 구분을 확인해 주세요.');
 
