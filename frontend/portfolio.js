@@ -1,5 +1,5 @@
 window.PRMPortfolio={
-  fresh(){return{schema:11,cash:PRM_CONFIG.cash,cashD1:PRM_CONFIG.cashD1||PRM_CONFIG.cash,cashD2:PRM_CONFIG.cashD2||PRM_CONFIG.cash,monthlyLoss:0,positions:PRM_CONFIG.positions.map(p=>({...p,price:PRM_CONFIG.fallbackPrices[p.name]||0}))}},
+  fresh(){return{schema:12,cash:PRM_CONFIG.cash,cashD1:PRM_CONFIG.cashD1||PRM_CONFIG.cash,cashD2:PRM_CONFIG.cashD2||PRM_CONFIG.cash,monthlyLoss:0,positions:PRM_CONFIG.positions.map(p=>({...p,price:PRM_CONFIG.fallbackPrices[p.name]||0}))}},
   initial(){
     const saved=PRMStorage.get('state',null);
     if(!saved)return this.fresh();
@@ -7,7 +7,7 @@ window.PRMPortfolio={
     saved.cash=Number(saved.cash||0);
     saved.monthlyLoss=Number(saved.monthlyLoss||0);
     saved.positions=saved.positions||[];
-    if(oldSchema<11){
+    if(oldSchema<12){
       const oldPrices={};
       for(const p of saved.positions){
         if(p&&p.name&&Number(p.price||0)>0&&!oldPrices[p.name])oldPrices[p.name]=Number(p.price);
@@ -16,10 +16,10 @@ window.PRMPortfolio={
       saved.cash=PRM_CONFIG.cash;
       saved.cashD1=PRM_CONFIG.cashD1||PRM_CONFIG.cash;
       saved.cashD2=PRM_CONFIG.cashD2||PRM_CONFIG.cash;
-      saved.schema=11;
+      saved.schema=12;
       this.save(saved);
     }else{
-      saved.schema=11;
+      saved.schema=12;
       saved.cashD1=Number(saved.cashD1??PRM_CONFIG.cashD1??saved.cash);
       saved.cashD2=Number(saved.cashD2??PRM_CONFIG.cashD2??saved.cash);
     }
