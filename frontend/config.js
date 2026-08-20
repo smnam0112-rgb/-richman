@@ -1,5 +1,5 @@
 window.PRM_CONFIG={
-  version:'8.6.1',
+  version:'8.7.0',
   cash:6663822,
   cashD1:1277572,
   cashD2:6663822,
@@ -8,7 +8,7 @@ window.PRM_CONFIG={
   stress:{min:900000,max:2300000,step:10000,tableStep:100000},
   stressSensitivity:{'삼성전자':0.7459,'SK스퀘어':0.9623,'삼성전기':0.7649},
   tickers:{'SK하이닉스':'000660.KS','삼성전자':'005930.KS','SK스퀘어':'402340.KS','삼성전기':'009150.KS'},
-  fallbackPrices:{'SK하이닉스':1691000,'삼성전자':271500,'SK스퀘어':1119000,'삼성전기':1516000},
+  fallbackPrices:{'SK하이닉스':1691000,'삼성전자':271000,'SK스퀘어':1123000,'삼성전기':1516000},
   positions:[
     {name:'SK하이닉스',type:'유통융자',qty:117,avg:1448566,loan:93215000},
     {name:'SK하이닉스',type:'자기융자',qty:49,avg:2021347,loan:54475000},
