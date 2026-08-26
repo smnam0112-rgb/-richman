@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-08-25T20:39:29+09:00",
-  "as_of": "2026-08-25",
+  "updated_at": "2026-08-26T20:41:48+09:00",
+  "as_of": "2026-08-26",
   "source": "Yahoo Finance daily adjusted close",
   "base": "SK하이닉스",
   "method": "OLS on aligned daily close-to-close returns; y = alpha + beta * SK hynix return",
@@ -9,59 +9,59 @@
     "3m": {
       "삼성전자": {
         "n": 66,
-        "beta": 0.7585,
-        "alpha_daily": -0.000701,
-        "correlation": 0.8914,
-        "r2": 0.7947,
-        "start_date": "2026-05-20",
-        "end_date": "2026-08-25"
+        "beta": 0.7586,
+        "alpha_daily": -0.000532,
+        "correlation": 0.8912,
+        "r2": 0.7942,
+        "start_date": "2026-05-21",
+        "end_date": "2026-08-26"
       },
       "SK스퀘어": {
         "n": 66,
         "beta": 0.9571,
-        "alpha_daily": 0.001601,
+        "alpha_daily": 0.001352,
         "correlation": 0.9122,
-        "r2": 0.8321,
-        "start_date": "2026-05-20",
-        "end_date": "2026-08-25"
+        "r2": 0.832,
+        "start_date": "2026-05-21",
+        "end_date": "2026-08-26"
       },
       "삼성전기": {
         "n": 66,
-        "beta": 0.8548,
-        "alpha_daily": 0.006798,
-        "correlation": 0.7448,
-        "r2": 0.5547,
-        "start_date": "2026-05-20",
-        "end_date": "2026-08-25"
+        "beta": 0.855,
+        "alpha_daily": 0.005229,
+        "correlation": 0.7473,
+        "r2": 0.5585,
+        "start_date": "2026-05-21",
+        "end_date": "2026-08-26"
       }
     },
     "6m": {
       "삼성전자": {
         "n": 132,
-        "beta": 0.7545,
-        "alpha_daily": -0.00037,
-        "correlation": 0.8864,
-        "r2": 0.7858,
-        "start_date": "2026-02-09",
-        "end_date": "2026-08-25"
+        "beta": 0.7539,
+        "alpha_daily": -0.000313,
+        "correlation": 0.8858,
+        "r2": 0.7846,
+        "start_date": "2026-02-10",
+        "end_date": "2026-08-26"
       },
       "SK스퀘어": {
         "n": 132,
-        "beta": 0.9654,
-        "alpha_daily": 0.000735,
-        "correlation": 0.9195,
-        "r2": 0.8454,
-        "start_date": "2026-02-09",
-        "end_date": "2026-08-25"
+        "beta": 0.9623,
+        "alpha_daily": 0.000396,
+        "correlation": 0.9197,
+        "r2": 0.8459,
+        "start_date": "2026-02-10",
+        "end_date": "2026-08-26"
       },
       "삼성전기": {
         "n": 132,
-        "beta": 0.7679,
-        "alpha_daily": 0.008856,
-        "correlation": 0.7063,
-        "r2": 0.4988,
-        "start_date": "2026-02-09",
-        "end_date": "2026-08-25"
+        "beta": 0.7666,
+        "alpha_daily": 0.008452,
+        "correlation": 0.7045,
+        "r2": 0.4963,
+        "start_date": "2026-02-10",
+        "end_date": "2026-08-26"
       }
     }
   }
