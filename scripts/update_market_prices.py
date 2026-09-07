@@ -17,10 +17,12 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "data" / "market_prices.json"
 CLOSING = ROOT / "data" / "closing_prices.json"
 STOCKS = {
-    "000660.KS": "000660",
-    "005930.KS": "005930",
-    "402340.KS": "402340",
-    "009150.KS": "009150",
+    "000660.KS": "000660",  # SK하이닉스
+    "005930.KS": "005930",  # 삼성전자
+    "402340.KS": "402340",  # SK스퀘어
+    "017670.KS": "017670",  # SK텔레콤
+    "002380.KS": "002380",  # KCC
+    "009150.KS": "009150",  # 삼성전기
 }
 SEOUL = ZoneInfo("Asia/Seoul")
 
@@ -59,7 +61,6 @@ def pick(data, *keys):
 
 
 def deep_value(data, keys):
-    """Return the first value whose exact key matches one of keys in a nested JSON payload."""
     if isinstance(data, dict):
         for key in keys:
             if key in data and data[key] not in (None, ""):
@@ -235,7 +236,6 @@ def parse_time(value):
 
 
 def active_session(now):
-    """Choose the price used for account valuation. KRX remains the reference close."""
     if now.weekday() >= 5:
         return "NXT_FINAL"
     minute = now.hour * 60 + now.minute
