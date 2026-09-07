@@ -1,14 +1,14 @@
 window.PRM_CONFIG={
-  version:'8.9.1',
+  version:'8.9.2',
   cash:1047271,
   cashD1:1047271,
   cashD2:1047271,
   baseline:{portfolioValue:338926500,collateralRatio:190.1,maxLoss:100000000,monthlyLossLimit:20000000},
   riskZones:{safe:180,caution:170,defense:160,danger:150,critical:140},
   stress:{min:900000,max:2300000,step:10000,tableStep:100000},
-  stressSensitivity:{'삼성전자':0.7459,'SK스퀘어':0.9623,'삼성전기':0.7649},
-  tickers:{'SK하이닉스':'000660.KS','삼성전자':'005930.KS','SK스퀘어':'402340.KS','SK텔레콤':'017670.KS','KCC':'002380.KS','삼성전기':'009150.KS'},
-  fallbackPrices:{'SK하이닉스':1730000,'삼성전자':266000,'SK스퀘어':1068000,'SK텔레콤':99100,'KCC':469500,'삼성전기':1516000},
+  stressSensitivity:{'삼성전자':0.7459,'SK스퀘어':0.9623},
+  tickers:{'SK하이닉스':'000660.KS','삼성전자':'005930.KS','SK스퀘어':'402340.KS','SK텔레콤':'017670.KS','KCC':'002380.KS'},
+  fallbackPrices:{'SK하이닉스':1730000,'삼성전자':266000,'SK스퀘어':1068000,'SK텔레콤':92900,'KCC':493500},
   positions:[
     {name:'SK하이닉스',type:'유통융자',qty:115,avg:1430141,loan:90456300},
     {name:'SK하이닉스',type:'자기융자',qty:49,avg:2021347,loan:54475000},
