@@ -18,10 +18,25 @@
       #portfolio .add-grid input,#portfolio .add-grid select{width:100%;box-sizing:border-box;padding:8px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;color:#111827;font:inherit}
       #portfolio .add-btn{padding:9px 14px;border:0;border-radius:8px;background:#2563eb;color:#fff;font-weight:700;cursor:pointer}
       #portfolio .add-note{margin-top:8px;font-size:12px;color:#64748b}
+      #dashboard .cash-edit{width:150px;max-width:100%;padding:7px 8px;border:1px solid #93c5fd;border-radius:8px;background:#fff;font:inherit;font-weight:800;text-align:right;color:#111827}
+      #dashboard .cash-edit:focus{outline:2px solid #2563eb33;border-color:#2563eb}
       @media(max-width:900px){#portfolio .add-grid{grid-template-columns:1fr 1fr 1fr}}
       @media(max-width:700px){#portfolio .editnum{width:92px;padding:9px 6px;font-size:16px}#portfolio .add-grid{grid-template-columns:1fr 1fr}#portfolio .add-btn{width:100%}}
     `;
     document.head.appendChild(s);
+  }
+
+  function enhanceCash(){
+    const dashboard=document.getElementById('dashboard');
+    if(!dashboard||typeof state==='undefined')return;
+    const cards=[...dashboard.querySelectorAll('.kpi')];
+    const cashCard=cards.find(x=>x.querySelector('b')?.textContent.trim()==='예수금');
+    if(!cashCard)return;
+    const strong=cashCard.querySelector('strong');
+    if(!strong||cashCard.querySelector('[data-edit-cash]'))return;
+    strong.innerHTML=`<input class="cash-edit" data-edit-cash type="number" min="0" step="1" value="${Math.round(Number(state.cash||0))}" aria-label="예수금 수정">`;
+    const small=cashCard.querySelector('small');
+    if(small)small.textContent='직접 수정 가능 · 변경 후 Enter/바깥 클릭';
   }
 
   function addForm(sec,table){
@@ -43,6 +58,7 @@
 
   function enhance(){
     injectStyle();
+    enhanceCash();
     const sec=document.getElementById('portfolio');
     if(!sec || typeof state==='undefined')return;
     const table=sec.querySelector('table');
@@ -75,6 +91,15 @@
   }
 
   document.addEventListener('change',e=>{
+    const cash=e.target.closest('[data-edit-cash]');
+    if(cash){
+      state.cash=Math.max(0,Number(cash.value||0));
+      if('cashD1' in state)state.cashD1=state.cash;
+      if('cashD2' in state)state.cashD2=state.cash;
+      PRMPortfolio.save(state);
+      if(typeof render==='function')render();
+      return;
+    }
     const q=e.target.closest('[data-edit-qty]');
     const a=e.target.closest('[data-edit-avg]');
     const pr=e.target.closest('[data-edit-price]');
