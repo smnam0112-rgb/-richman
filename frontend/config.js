@@ -1,5 +1,5 @@
 window.PRM_CONFIG={
-  version:'8.9.2',
+  version:'8.9.3',
   cash:1047271,
   cashD1:1047271,
   cashD2:1047271,
