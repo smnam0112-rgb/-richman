@@ -1,6 +1,6 @@
 window.PRMMarket={
   prices:{},opens:{},previousCloses:{},lastUpdated:null,marketStatus:'UNKNOWN',source:null,mode:'loading',
-  realtimeUrl:'https://richman-quotes-smnam0112-5780s-projects.vercel.app/api/quotes',
+  realtimeUrl:'https://richman-quotes-live-smnam0112-5780s-projects.vercel.app/api/quotes',
   rawUrl:'https://raw.githubusercontent.com/smnam0112-rgb/-richman/main/data/market_prices.json',
   async readJson(url,timeoutMs=5000){
     const sep=url.includes('?')?'&':'?';
