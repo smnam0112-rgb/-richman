@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-21T04:04:01+09:00",
-  "as_of": "2026-11-19",
+  "updated_at": "2026-11-24T07:35:40+09:00",
+  "as_of": "2026-11-23",
   "source": "Yahoo Finance daily adjusted close",
   "base": "SK하이닉스",
   "method": "OLS on aligned daily close-to-close returns; y = alpha + beta * SK hynix return",
@@ -9,59 +9,59 @@
     "3m": {
       "삼성전자": {
         "n": 66,
-        "beta": 0.7203,
-        "alpha_daily": -0.001163,
-        "correlation": 0.899,
-        "r2": 0.8083,
-        "start_date": "2026-08-13",
-        "end_date": "2026-11-19"
+        "beta": 0.7273,
+        "alpha_daily": -0.00184,
+        "correlation": 0.8966,
+        "r2": 0.8039,
+        "start_date": "2026-08-18",
+        "end_date": "2026-11-23"
       },
       "SK스퀘어": {
         "n": 66,
-        "beta": 1.0509,
-        "alpha_daily": -0.000879,
-        "correlation": 0.9446,
-        "r2": 0.8924,
-        "start_date": "2026-08-13",
-        "end_date": "2026-11-19"
+        "beta": 1.0421,
+        "alpha_daily": -0.0012,
+        "correlation": 0.9419,
+        "r2": 0.8871,
+        "start_date": "2026-08-18",
+        "end_date": "2026-11-23"
       },
       "삼성전기": {
         "n": 66,
-        "beta": 0.7436,
-        "alpha_daily": -0.003051,
-        "correlation": 0.7076,
-        "r2": 0.5007,
-        "start_date": "2026-08-13",
-        "end_date": "2026-11-19"
+        "beta": 0.7289,
+        "alpha_daily": -0.005425,
+        "correlation": 0.7005,
+        "r2": 0.4907,
+        "start_date": "2026-08-18",
+        "end_date": "2026-11-23"
       }
     },
     "6m": {
       "삼성전자": {
         "n": 132,
-        "beta": 0.7346,
-        "alpha_daily": -0.000542,
-        "correlation": 0.8876,
-        "r2": 0.7879,
-        "start_date": "2026-05-08",
-        "end_date": "2026-11-19"
+        "beta": 0.743,
+        "alpha_daily": -0.000466,
+        "correlation": 0.8884,
+        "r2": 0.7892,
+        "start_date": "2026-05-12",
+        "end_date": "2026-11-23"
       },
       "SK스퀘어": {
         "n": 132,
-        "beta": 0.9707,
-        "alpha_daily": -0.000212,
-        "correlation": 0.9189,
-        "r2": 0.8444,
-        "start_date": "2026-05-08",
-        "end_date": "2026-11-19"
+        "beta": 0.9792,
+        "alpha_daily": 0.000205,
+        "correlation": 0.9188,
+        "r2": 0.8442,
+        "start_date": "2026-05-12",
+        "end_date": "2026-11-23"
       },
       "삼성전기": {
         "n": 132,
-        "beta": 0.8226,
-        "alpha_daily": 0.002713,
-        "correlation": 0.737,
-        "r2": 0.5432,
-        "start_date": "2026-05-08",
-        "end_date": "2026-11-19"
+        "beta": 0.8539,
+        "alpha_daily": 0.00337,
+        "correlation": 0.7501,
+        "r2": 0.5627,
+        "start_date": "2026-05-12",
+        "end_date": "2026-11-23"
       }
     }
   }
